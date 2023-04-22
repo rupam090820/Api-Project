@@ -1,0 +1,33 @@
+<div>
+    <section class="form-group">
+        <input type=" search" placeholder="enter food name here....." class="form-control" [(ngModel)]="searchfood">
+    </section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">FOOD NAME</th>
+                <th scope="col">FOOD ID</th>
+                <th scope="col">FOOD DESCRIPTION</th>
+                <th scope="col">FOOD PRICE</th>
+                <th scope="col">FOOD IMAGE</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let f of api_data|custom:searchfood | paginate:
+      { itemsPerPage: 8, currentPage:p, totalItems:totalulist }">
+                <th scope="row">{{f.food_name}}</th>
+                <td>{{f['_id']}}</td>
+                <td>{{f.food_desc}}</td>
+                <td>{{f.food_price}}</td>
+                <td>
+                    <img src={{f.food_image}} style="height:40px;width:40px;">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>=
+
+</div>
